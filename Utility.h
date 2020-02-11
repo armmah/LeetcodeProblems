@@ -22,12 +22,15 @@ public:
     // Print a linked list from HEAD to NULL.
     template<typename T>
     static void print(T* head, std::string (*func)(T*)) {
+        if(!head) 
+            return;
+
         auto cur = head;
-        while (cur != NULL) {
+        while (cur->next != NULL) {
             std::cout << func(cur)<<", ";
             cur = cur->next;
         }
-        std::cout<<std::endl;
+        std::cout<<func(cur)<<std::endl;
     }
 
 
