@@ -26,7 +26,7 @@ public:
             return;
 
         auto cur = head;
-        while (cur->next != NULL) {
+        while (cur->next) {
             std::cout << func(cur)<<", ";
             cur = cur->next;
         }
@@ -39,5 +39,18 @@ public:
     static void print(T var) {
         std::cout << var << std::endl;
     }
+        
+    // Delete all elements of the linekd list.
+    template<typename T>
+    static void freeAlloc(T* head) {
+        if(!head) 
+            return;
 
+        auto cur = head;
+        while (cur->next) {
+            auto tmp = cur->next;
+            delete cur;
+            cur = tmp;
+        }
+    }
 };
