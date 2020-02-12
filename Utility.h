@@ -40,6 +40,24 @@ public:
         std::cout << var << std::endl;
     }
         
+    // Check values of a linked list.
+    template<typename T, typename V>
+    static bool compare(T* head, std::vector<V> set) {
+        if(!head) 
+            return set.size() == 0;
+
+        auto cur = head;
+        int i = 0;
+        while (cur->next) {
+            if(cur->val != set[i])
+                return false;
+
+            i++;
+            cur = cur->next;
+        }
+        return true;
+    }
+        
     // Delete all elements of the linekd list.
     template<typename T>
     static void freeAlloc(T* head) {
