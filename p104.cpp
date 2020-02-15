@@ -9,6 +9,14 @@ class TreeNode : LeetCodeProblem {
     TreeNode *right;
     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 
+    // Came back to this problem a week later.
+    static int maxDepth_attempt2(TreeNode* root) {
+        if(!root)
+            return 0;
+        return max(maxDepth(root->left), maxDepth(root->right)) + 1;
+    }
+
+    // First solution.
     static int maxDepth(TreeNode* root) {
         static int count = 0;
         auto leaf = root->left;

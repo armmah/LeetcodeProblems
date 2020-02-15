@@ -5,11 +5,8 @@
 
 class p1346 : public LeetCodeProblem {
     bool checkIfExist(std::vector<int>& arr) {
-        std::unordered_multiset<int> set;
-    
-        for (auto el : arr) {
-            set.insert(el);
-        }
+        std::unordered_multiset<int> set(arr.begin(), arr.end());
+
         for (auto el : arr) {
             if(el != 0 && set.count(el * 2) > 0 ||
                 el == 0 && set.count(el * 2) > 1)
