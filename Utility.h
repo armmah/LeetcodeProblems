@@ -8,7 +8,7 @@ class Utility {
 public:
     // Prints one dimensional vectors. "element, element\n"
     template<typename T>
-    static void print(std::vector<T>& s, std::string (*func)(T) = std::to_string) {
+    static void print(std::vector<T>& const s, std::string (*func)(T) = std::to_string) {
         auto n = s.size();
         if(n == 0)
             return;
@@ -21,7 +21,7 @@ public:
 
     // Print a linked list from HEAD to NULL.
     template<typename T>
-    static void print(T* head, std::string (*func)(T*)) {
+    static void print(T* const head, std::string (*func)(T*)) {
         if(!head) 
             return;
 
@@ -33,7 +33,6 @@ public:
         std::cout<<func(cur)<<std::endl;
     }
 
-
     // Just prints the value with an endl at the end... nothing exciting.
     template<typename T>
     static void print(T var) {
@@ -42,7 +41,7 @@ public:
         
     // Check values of a linked list.
     template<typename T, typename V>
-    static bool compare(T* head, std::vector<V> set) {
+    static bool compare(T* const head, std::vector<V>& const set) {
         if(!head) 
             return set.size() == 0;
 
