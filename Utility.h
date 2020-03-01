@@ -2,6 +2,8 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#define NOMINMAX
+#include <windows.h>
 
 #pragma once
 class Utility {
@@ -37,6 +39,28 @@ public:
     template<typename T>
     static void print(T var) {
         std::cout << var << std::endl;
+    }
+
+    // Prints the value in green if assertion succeeded and red if it did not.
+    template<typename T>
+    static void print_assert(T var, T expected) {
+        // Change color depending on assertion result.
+        setConsole(var == expected ? ConsoleMessageType::Success : ConsoleMessageType::Failure);
+        print(var);
+        // Return the color to default.
+        setConsole(ConsoleMessageType::Default);
+    }
+
+    enum class ConsoleMessageType {
+        Success = 10,   // Console foreground Bright Green
+        Failure = 12,   // Bright Red
+        Default = 15    // White
+    };
+    static HANDLE hConsole;
+    static void setConsole(ConsoleMessageType type) {
+        if(!hConsole)
+            hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+        SetConsoleTextAttribute(hConsole, (int)type);
     }
         
     // Check values of a linked list.
