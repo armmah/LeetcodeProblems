@@ -56,10 +56,8 @@ public:
         Failure = 12,   // Bright Red
         Default = 15    // White
     };
-    static HANDLE hConsole;
     static void setConsole(ConsoleMessageType type) {
-        if(!hConsole)
-            hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+        auto hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(hConsole, (int)type);
     }
         
